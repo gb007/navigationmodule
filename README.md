@@ -13,6 +13,7 @@ allprojects {
 	
 ````
 
+
 ## 2.在需要引用此类库模块的build.gradle中引入依赖
 
 ````
@@ -26,6 +27,7 @@ dependencies {
 }
 
 ````
+
 
 ## 3.初始化配置信息
 
@@ -100,6 +102,7 @@ navigationBar.defaultSetting()  //恢复默认配置、可用于重绘导航栏
                 .build();
 
 ````
+
 
 ## 3.1 实用范例
 
