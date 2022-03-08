@@ -29,7 +29,6 @@ import com.hollysmart.navigationmodule.view.KickBackAnimator
 import java.lang.Exception
 
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navigationBar: EasyNavigationBar
@@ -40,17 +39,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-//        Thread {
-//            //耗时任务，比如加载网络数据
-//            runOnUiThread { // 这里可以睡几秒钟，如果要放广告的话
-//                 sleep(3000);
-//
-//            }
-//        }.start()
-
-
         setContentView(R.layout.activity_main)
         navigationBar = findViewById(R.id.navigationBar)
         initNavigation()
@@ -60,15 +48,15 @@ class MainActivity : AppCompatActivity() {
     private fun initNavigation() {
 
         //底部导航名称
-        val tabText = arrayOf("首页", "发现", "消息","我的")
+        val tabText = arrayOf("首页", "发现", "消息", "我的")
 
         //未选中icon
         val normalIcon =
-            intArrayOf(R.mipmap.index, R.mipmap.find,R.mipmap.message,R.mipmap.me)
+            intArrayOf(R.mipmap.index, R.mipmap.find, R.mipmap.message, R.mipmap.me)
 
         //选中时icon
         val selectIcon =
-            intArrayOf(R.mipmap.index1, R.mipmap.find1, R.mipmap.message1,R.mipmap.me1)
+            intArrayOf(R.mipmap.index1, R.mipmap.find1, R.mipmap.message1, R.mipmap.me1)
 
         //底部fragment
         var fragments = mutableListOf<Fragment>()
@@ -100,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
             .setOnCenterTabClickListener { //弹出菜单
-                showMunu()
+                showMenu()
                 false
             }
             .mode(EasyNavigationBar.NavigationMode.MODE_ADD)
@@ -108,6 +96,20 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         navigationBar.setAddViewLayout(createAddView())
+
+        Handler().postDelayed(Runnable {
+            navigationBar.setMsgPointCount(0, 20)//设置消息位置，消息数量
+            navigationBar.setMsgPointCount(1, 105)//设置消息位置，消息数量大于99，则显示99+
+            navigationBar.setHintPoint(3, true)//设置消息红点
+        }, 1000)
+
+
+        Handler().postDelayed(Runnable {
+            navigationBar.clearAllHintPoint()//清除所有消息红点
+            navigationBar.clearAllMsgPoint()//清除所有消息数量
+            navigationBar.clearHintPoint(3)//清除指定位置消息红点
+            navigationBar.clearMsgPoint(0)//清除指定位置消息数量
+        }, 3000)
 
     }
 
@@ -143,7 +145,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun showMunu() {
+    private fun showMenu() {
         startAnimation()
         mHandler.post { //＋ 旋转动画
             cancelImageView.animate().rotation(90f).duration = 400

@@ -158,6 +158,22 @@ private fun initNavigation() {
             .build()
 
         navigationBar.setAddViewLayout(createAddView())//自己实现点击中间加号弹出页面
+        
+        
+                Handler().postDelayed(Runnable {
+            navigationBar.setMsgPointCount(0, 20)
+            navigationBar.setMsgPointCount(1, 105)
+            navigationBar.setHintPoint(3, true)
+        }, 1000)
+
+
+        Handler().postDelayed(Runnable {
+            //navigationBar.clearAllHintPoint()
+            //navigationBar.clearAllMsgPoint()
+            navigationBar.clearHintPoint(3)
+            navigationBar.clearMsgPoint(0)
+        }, 3000)
+        
 
     }
 
