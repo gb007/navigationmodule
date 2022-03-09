@@ -33,6 +33,8 @@ dependencies {
 
 ````
 
+//------------------------------------NavigationBar初始化------------------------------
+
 navigationBar.defaultSetting()  //恢复默认配置、可用于重绘导航栏
                 .titleItems(tabText)      //  Tab文字集合  只传文字则只显示文字
                 .normalIconItems(normalIcon)   //  Tab未选中图标集合
@@ -100,6 +102,25 @@ navigationBar.defaultSetting()  //恢复默认配置、可用于重绘导航栏
                 })
                 //.setupWithViewPager() ViewPager或ViewPager2
                 .build();
+                
+//------------------------------------NavigationBar初始化------------------------------
+
+
+
+//------------------------------------设置底部消息数量，消息红点提示------------------------------
+
+            navigationBar.setMsgPointCount(0, 20)//设置消息位置，消息数量
+            navigationBar.setMsgPointCount(1, 105)//设置消息位置，消息数量大于99，则显示99+
+            navigationBar.setHintPoint(3, true)//设置消息红点
+
+
+            navigationBar.clearAllHintPoint()//清除所有消息红点
+            navigationBar.clearAllMsgPoint()//清除所有消息数量
+            navigationBar.clearHintPoint(3)//清除指定位置消息红点
+            navigationBar.clearMsgPoint(0)//清除指定位置消息数量
+            
+//------------------------------------设置底部消息数量，消息红点提示------------------------------
+
 
 ````
 
@@ -158,20 +179,20 @@ private fun initNavigation() {
             .build()
 
         navigationBar.setAddViewLayout(createAddView())//自己实现点击中间加号弹出页面
+       
         
-        
-                Handler().postDelayed(Runnable {
-            navigationBar.setMsgPointCount(0, 20)
-            navigationBar.setMsgPointCount(1, 105)
-            navigationBar.setHintPoint(3, true)
+        Handler().postDelayed(Runnable {
+            navigationBar.setMsgPointCount(0, 20)//设置消息位置，消息数量
+            navigationBar.setMsgPointCount(1, 105)//设置消息位置，消息数量大于99，则显示99+
+            navigationBar.setHintPoint(3, true)//设置消息红点
         }, 1000)
 
 
         Handler().postDelayed(Runnable {
-            //navigationBar.clearAllHintPoint()
-            //navigationBar.clearAllMsgPoint()
-            navigationBar.clearHintPoint(3)
-            navigationBar.clearMsgPoint(0)
+            //navigationBar.clearAllHintPoint()//清除所有消息红点
+            //navigationBar.clearAllMsgPoint()//清除所有消息数量
+            navigationBar.clearHintPoint(3)//清除指定位置消息红点
+            navigationBar.clearMsgPoint(0)//清除指定位置消息数量
         }, 3000)
         
 
